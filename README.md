@@ -1,9 +1,14 @@
 # task6
 
-1. `/[-\s]/g`: This regex pattern is used with the `replace` function to remove dashes (`-`) and spaces (`\s`) from the card number. The `g` flag ensures that all occurrences are replaced, not just the first one.
+For Visa
 
-2. `/^\d{13,16}$/`: This regex pattern checks if the card number consists of 13 to 16 digits only. Here's what each part means:
-   - `^`: Asserts the start of the string.
-   - `\d`: Matches any digit (equivalent to `[0-9]`).
-   - `{13,16}`: Specifies that there should be between 13 and 16 occurrences of the preceding digit matcher (`\d`).
-   - `$`: Asserts the end of the string.
+/^4\d{12}(?:\d{3})?$/
+
+
+- `^`: Asserts the start of the string.
+- `4`: Matches the digit 4, which is the starting digit for Visa cards.
+- `\d{12}`: Matches exactly 12 digits after the initial digit 4. Visa cards can have either 13 or 16 digits in total, so this accounts for the remaining 12 digits in a 13-digit Visa card number.
+- `(?:\d{3})?`: This part `(?:\d{3})` matches exactly 3 digits, and the `?` at the end makes this group optional. This allows for the case of 16-digit Visa card numbers, where an additional 3 digits can be added after the initial 12.
+- `$`: Asserts the end of the string.
+
+So, this regular expression pattern checks if the card number starts with a 4, followed by either 12 or 15 digits (totaling 13 or 16 digits) which is typical for Visa card numbers
